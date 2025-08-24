@@ -18,6 +18,7 @@ import difflib
 from pathlib import Path
 from typing import Dict, Callable
 
+<<<<<<< HEAD
 # This needed a modification for windows and python 3.10 - JPShag
 # Resolved ImportError: cannot import 'setup.utils.ui' because the sibling 'setup' directory was not on sys.path.
 # Find the setup directory relative to this file
@@ -28,6 +29,19 @@ if not setup_dir.exists():
 
 # Add to sys.path
 sys.path.insert(0, str(setup_dir))
+=======
+# Add the local 'setup' directory to the Python import path
+current_dir = Path(__file__).parent
+project_root = current_dir.parent
+setup_dir = project_root / "setup"
+
+# Insert the setup directory at the beginning of sys.path
+if setup_dir.exists():
+    sys.path.insert(0, str(setup_dir.parent))
+else:
+    print(f"Warning: Setup directory not found at {setup_dir}")
+    sys.exit(1)
+>>>>>>> 97a682452de2ff8c3f18d873839731b76b34ab71
 
 
 # Try to import utilities from the setup package
@@ -75,6 +89,10 @@ def create_global_parser() -> argparse.ArgumentParser:
                                help="Force execution, skipping checks")
     global_parser.add_argument("--yes", "-y", action="store_true",
                                help="Automatically answer yes to all prompts")
+    global_parser.add_argument("--no-update-check", action="store_true",
+                               help="Skip checking for updates")
+    global_parser.add_argument("--auto-update", action="store_true",
+                               help="Automatically install updates without prompting")
 
     return global_parser
 
@@ -96,7 +114,8 @@ Examples:
         parents=[global_parser]
     )
 
-    parser.add_argument("--version", action="version", version="SuperClaude v3.0.0")
+    from SuperClaude import __version__
+    parser.add_argument("--version", action="version", version=f"SuperClaude {__version__}")
 
     subparsers = parser.add_subparsers(
         dest="operation",
@@ -141,7 +160,7 @@ def get_operation_modules() -> Dict[str, str]:
 def load_operation_module(name: str):
     """Try to dynamically import an operation module"""
     try:
-        return __import__(f"setup.operations.{name}", fromlist=[name])
+        return __import__(f"setup.cli.commands.{name}", fromlist=[name])
     except ImportError as e:
         logger = get_logger()
         if logger:
@@ -200,11 +219,33 @@ def main() -> int:
         parser, subparsers, global_parser = create_parser()
         operations = register_operation_parsers(subparsers, global_parser)
         args = parser.parse_args()
+        
+        # Check for updates unless disabled
+        if not args.quiet and not getattr(args, 'no_update_check', False):
+            try:
+                from setup.utils.updater import check_for_updates
+                # Check for updates in the background
+                from SuperClaude import __version__
+                updated = check_for_updates(
+                    current_version=__version__,
+                    auto_update=getattr(args, 'auto_update', False)
+                )
+                # If updated, suggest restart
+                if updated:
+                    print("\n🔄 SuperClaude was updated. Please restart to use the new version.")
+                    return 0
+            except ImportError:
+                # Updater module not available, skip silently
+                pass
+            except Exception:
+                # Any other error, skip silently
+                pass
 
         # No operation provided? Show help manually unless in quiet mode
         if not args.operation:
             if not args.quiet:
-                display_header("SuperClaude Framework v3.0", "Unified CLI for all operations")
+                from SuperClaude import __version__
+                display_header(f"SuperClaude Framework v{__version__}", "Unified CLI for all operations")
                 print(f"{Colors.CYAN}Available operations:{Colors.RESET}")
                 for op, desc in get_operation_modules().items():
                     print(f"  {op:<12} {desc}")

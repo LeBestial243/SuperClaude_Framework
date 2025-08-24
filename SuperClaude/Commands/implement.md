@@ -1,54 +1,101 @@
 ---
-allowed-tools: [Read, Write, Edit, MultiEdit, Bash, Glob, TodoWrite, Task]
+name: implement
 description: "Feature and code implementation with intelligent persona activation and MCP integration"
+category: workflow
+complexity: standard
+mcp-servers: [context7, sequential, magic, playwright]
+personas: [architect, frontend, backend, security, qa-specialist]
 ---
 
 # /sc:implement - Feature Implementation
 
-## Purpose
-Implement features, components, and code functionality with intelligent expert activation and comprehensive development support.
+> **Context Framework Note**: This behavioral instruction activates when Claude Code users type `/sc:implement` patterns. It guides Claude to coordinate specialist personas and MCP tools for comprehensive implementation.
 
-## Usage
+## Triggers
+- Feature development requests for components, APIs, or complete functionality
+- Code implementation needs with framework-specific requirements
+- Multi-domain development requiring coordinated expertise
+- Implementation projects requiring testing and validation integration
+
+## Context Trigger Pattern
 ```
+<<<<<<< HEAD
 /sc:implement [feature-description] [--type component|api|service|feature] [--framework react|vue|express|etc] [--safe] [--iterative] [--with-tests] [--documentation]
+=======
+/sc:implement [feature-description] [--type component|api|service|feature] [--framework react|vue|express] [--safe] [--with-tests]
+>>>>>>> 97a682452de2ff8c3f18d873839731b76b34ab71
 ```
+**Usage**: Type this in Claude Code conversation to activate implementation behavioral mode with coordinated expertise and systematic development approach.
 
-## Arguments
-- `feature-description` - Description of what to implement
-- `--type` - Implementation type (component, api, service, feature, module)
-- `--framework` - Target framework or technology stack
-- `--safe` - Use conservative implementation approach
-- `--iterative` - Enable iterative development with validation steps
-- `--with-tests` - Include test implementation
-- `--documentation` - Generate documentation alongside implementation
+## Behavioral Flow
+1. **Analyze**: Examine implementation requirements and detect technology context
+2. **Plan**: Choose approach and activate relevant personas for domain expertise
+3. **Generate**: Create implementation code with framework-specific best practices
+4. **Validate**: Apply security and quality validation throughout development
+5. **Integrate**: Update documentation and provide testing recommendations
 
-## Execution
-1. Analyze implementation requirements and detect technology context
-2. Auto-activate relevant personas (frontend, backend, security, etc.)
-3. Coordinate with MCP servers (Magic for UI, Context7 for patterns, Sequential for complex logic)
-4. Generate implementation code with best practices
-5. Apply security and quality validation
-6. Provide testing recommendations and next steps
+Key behaviors:
+- Context-based persona activation (architect, frontend, backend, security, qa)
+- Framework-specific implementation via Context7 and Magic MCP integration
+- Systematic multi-component coordination via Sequential MCP
+- Comprehensive testing integration with Playwright for validation
 
-## Claude Code Integration
-- Uses Write/Edit/MultiEdit for code generation and modification
-- Leverages Read and Glob for codebase analysis and context understanding
-- Applies TodoWrite for implementation progress tracking
-- Integrates Task tool for complex multi-step implementations
-- Coordinates with MCP servers for specialized functionality
-- Auto-activates appropriate personas based on implementation type
+## MCP Integration
+- **Context7 MCP**: Framework patterns and official documentation for React, Vue, Angular, Express
+- **Magic MCP**: Auto-activated for UI component generation and design system integration
+- **Sequential MCP**: Complex multi-step analysis and implementation planning
+- **Playwright MCP**: Testing validation and quality assurance integration
 
-## Auto-Activation Patterns
-- **Frontend**: UI components, React/Vue/Angular development
-- **Backend**: APIs, services, database integration
-- **Security**: Authentication, authorization, data protection
-- **Architecture**: System design, module structure
-- **Performance**: Optimization, scalability considerations
+## Tool Coordination
+- **Write/Edit/MultiEdit**: Code generation and modification for implementation
+- **Read/Grep/Glob**: Project analysis and pattern detection for consistency
+- **TodoWrite**: Progress tracking for complex multi-file implementations
+- **Task**: Delegation for large-scale feature development requiring systematic coordination
+
+## Key Patterns
+- **Context Detection**: Framework/tech stack → appropriate persona and MCP activation
+- **Implementation Flow**: Requirements → code generation → validation → integration
+- **Multi-Persona Coordination**: Frontend + Backend + Security → comprehensive solutions
+- **Quality Integration**: Implementation → testing → documentation → validation
 
 ## Examples
+
+### React Component Implementation
 ```
-/sc:implement user authentication system --type feature --with-tests
-/sc:implement dashboard component --type component --framework react
-/sc:implement REST API for user management --type api --safe
-/sc:implement payment processing service --type service --iterative
+/sc:implement user profile component --type component --framework react
+# Magic MCP generates UI component with design system integration
+# Frontend persona ensures best practices and accessibility
 ```
+
+### API Service Implementation
+```
+/sc:implement user authentication API --type api --safe --with-tests
+# Backend persona handles server-side logic and data processing
+# Security persona ensures authentication best practices
+```
+
+### Full-Stack Feature
+```
+/sc:implement payment processing system --type feature --with-tests
+# Multi-persona coordination: architect, frontend, backend, security
+# Sequential MCP breaks down complex implementation steps
+```
+
+### Framework-Specific Implementation
+```
+/sc:implement dashboard widget --framework vue
+# Context7 MCP provides Vue-specific patterns and documentation
+# Framework-appropriate implementation with official best practices
+```
+
+## Boundaries
+
+**Will:**
+- Implement features with intelligent persona activation and MCP coordination
+- Apply framework-specific best practices and security validation
+- Provide comprehensive implementation with testing and documentation integration
+
+**Will Not:**
+- Make architectural decisions without appropriate persona consultation
+- Implement features conflicting with security policies or architectural constraints
+- Override user-specified safety constraints or bypass quality gates

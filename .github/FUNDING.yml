@@ -1,9 +1,16 @@
 # These are supported funding model platforms
 
+<<<<<<< HEAD
 github: [NomenAK,SuperClaude-Org]
 patreon: superclaude
 open_collective: # Replace with a single Open Collective username
 ko_fi: superclaude
+=======
+github: NomenAK
+patreon: # SuperClaude
+open_collective: # Replace with a single Open Collective username
+ko_fi: # superclaude
+>>>>>>> 97a682452de2ff8c3f18d873839731b76b34ab71
 tidelift: # Replace with a single Tidelift platform-name/package-name e.g., npm/babel
 community_bridge: # Replace with a single Community Bridge project-name e.g., cloud-foundry
 liberapay: # Replace with a single Liberapay username

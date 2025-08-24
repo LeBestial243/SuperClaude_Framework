@@ -1,23 +1,13 @@
-import setuptools
-import sys
-import logging
+"""
+Setup.py for SuperClaude Framework
 
-# Setup logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+This is a minimal setup.py that defers to pyproject.toml for configuration.
+Modern Python packaging uses pyproject.toml as the primary configuration file.
+"""
 
-def get_version():
-    """Get version from VERSION file with proper error handling."""
-    try:
-        with open("VERSION", "r") as f:
-            return f.read().strip()
-    except FileNotFoundError:
-        logger.warning("VERSION file not found, using fallback version")
-        return "3.0.0"
-    except Exception as e:
-        logger.error(f"Error reading VERSION file: {e}")
-        return "3.0.0"
+from setuptools import setup
 
+<<<<<<< HEAD
 def get_long_description():
     """Get long description from README with error handling."""
     try:
@@ -86,3 +76,7 @@ setuptools.setup(
         "Intended Audience :: Developers",
     ],
         )
+=======
+# All configuration is now in pyproject.toml
+setup()
+>>>>>>> 97a682452de2ff8c3f18d873839731b76b34ab71

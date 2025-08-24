@@ -1,34 +1,97 @@
 ---
-allowed-tools: [Read, Grep, Glob, Bash, Edit, MultiEdit]
-description: "Clean up code, remove dead code, and optimize project structure"
+name: cleanup
+description: "Systematically clean up code, remove dead code, and optimize project structure"
+category: workflow
+complexity: standard
+mcp-servers: [sequential, context7]
+personas: [architect, quality, security]
 ---
 
 # /sc:cleanup - Code and Project Cleanup
 
-## Purpose
-Systematically clean up code, remove dead code, optimize imports, and improve project structure.
+## Triggers
+- Code maintenance and technical debt reduction requests
+- Dead code removal and import optimization needs
+- Project structure improvement and organization requirements
+- Codebase hygiene and quality improvement initiatives
 
 ## Usage
 ```
+<<<<<<< HEAD
 /sc:cleanup [target] [--type code|imports|files|all] [--safe|--aggressive] [--dry-run]
+=======
+/sc:cleanup [target] [--type code|imports|files|all] [--safe|--aggressive] [--interactive]
+>>>>>>> 97a682452de2ff8c3f18d873839731b76b34ab71
 ```
 
-## Arguments
-- `target` - Files, directories, or entire project to clean
-- `--type` - Cleanup type (code, imports, files, all)
-- `--safe` - Conservative cleanup (default)
-- `--aggressive` - More thorough cleanup with higher risk
-- `--dry-run` - Preview changes without applying them
+## Behavioral Flow
+1. **Analyze**: Assess cleanup opportunities and safety considerations across target scope
+2. **Plan**: Choose cleanup approach and activate relevant personas for domain expertise
+3. **Execute**: Apply systematic cleanup with intelligent dead code detection and removal
+4. **Validate**: Ensure no functionality loss through testing and safety verification
+5. **Report**: Generate cleanup summary with recommendations for ongoing maintenance
 
-## Execution
-1. Analyze target for cleanup opportunities
-2. Identify dead code, unused imports, and redundant files
-3. Create cleanup plan with risk assessment
-4. Execute cleanup operations with appropriate safety measures
-5. Validate changes and report cleanup results
+Key behaviors:
+- Multi-persona coordination (architect, quality, security) based on cleanup type
+- Framework-specific cleanup patterns via Context7 MCP integration
+- Systematic analysis via Sequential MCP for complex cleanup operations
+- Safety-first approach with backup and rollback capabilities
 
-## Claude Code Integration
-- Uses Glob for systematic file discovery
-- Leverages Grep for dead code detection
-- Applies MultiEdit for batch cleanup operations
-- Maintains backup and rollback capabilities
+## MCP Integration
+- **Sequential MCP**: Auto-activated for complex multi-step cleanup analysis and planning
+- **Context7 MCP**: Framework-specific cleanup patterns and best practices
+- **Persona Coordination**: Architect (structure), Quality (debt), Security (credentials)
+
+## Tool Coordination
+- **Read/Grep/Glob**: Code analysis and pattern detection for cleanup opportunities
+- **Edit/MultiEdit**: Safe code modification and structure optimization
+- **TodoWrite**: Progress tracking for complex multi-file cleanup operations
+- **Task**: Delegation for large-scale cleanup workflows requiring systematic coordination
+
+## Key Patterns
+- **Dead Code Detection**: Usage analysis → safe removal with dependency validation
+- **Import Optimization**: Dependency analysis → unused import removal and organization
+- **Structure Cleanup**: Architectural analysis → file organization and modular improvements
+- **Safety Validation**: Pre/during/post checks → preserve functionality throughout cleanup
+
+## Examples
+
+### Safe Code Cleanup
+```
+/sc:cleanup src/ --type code --safe
+# Conservative cleanup with automatic safety validation
+# Removes dead code while preserving all functionality
+```
+
+### Import Optimization
+```
+/sc:cleanup --type imports --preview
+# Analyzes and shows unused import cleanup without execution
+# Framework-aware optimization via Context7 patterns
+```
+
+### Comprehensive Project Cleanup
+```
+/sc:cleanup --type all --interactive
+# Multi-domain cleanup with user guidance for complex decisions
+# Activates all personas for comprehensive analysis
+```
+
+### Framework-Specific Cleanup
+```
+/sc:cleanup components/ --aggressive
+# Thorough cleanup with Context7 framework patterns
+# Sequential analysis for complex dependency management
+```
+
+## Boundaries
+
+**Will:**
+- Systematically clean code, remove dead code, and optimize project structure
+- Provide comprehensive safety validation with backup and rollback capabilities
+- Apply intelligent cleanup algorithms with framework-specific pattern recognition
+
+**Will Not:**
+- Remove code without thorough safety analysis and validation
+- Override project-specific cleanup exclusions or architectural constraints
+- Apply cleanup operations that compromise functionality or introduce bugs
